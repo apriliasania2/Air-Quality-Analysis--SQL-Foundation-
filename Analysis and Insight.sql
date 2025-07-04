@@ -1,6 +1,6 @@
-# Case Study 1: Ingin diketahui 10 country dengan nilai Air Quality Index (AQI) tertinggi untuk CO
+''' Case Study 1: Ingin diketahui 10 country dengan nilai Air Quality Index (AQI) tertinggi untuk CO
 (Karbon Monoksida) dimana juga menampilkan total pengamatan dan rata-rata
-konsentrasi CO.
+konsentrasi CO.'''
 
 SELECT
   county_name, observation_count, arithmetic_mean, aqi
@@ -13,8 +13,8 @@ LIMIT 10;
   rata aritmatik untuk menggambarkan representativitas data dan tingkat keparahan polusi.'''
   
 
-# Case Study 2: Ingin diketahui 10 negara bagian dengan jumlah pengamatan kualitas udara terbanyak di
-tahun 2023.
+'''Case Study 2: Ingin diketahui 10 negara bagian dengan jumlah pengamatan kualitas udara terbanyak di
+tahun 2023.'''
 
 SELECT state_name, observation_count
 FROM `bigquery-public-data.epa_historical_air_quality.air_quality_annual_summary`
@@ -22,9 +22,13 @@ WHERE year = 2023
 ORDER BY observation_count DESC
 LIMIT 10;
 
+'''Insight: Query ini menunjukkan jumlah observasi kualitas udara di berbagai negara bagian pada tahun 
+  2023, di mana tingginya jumlah observasi mengindikasikan jaringan pemantauan yang lebih aktif dan 
+  perhatian lebih terhadap isu polusi udara.'''
 
-# Case Study 3: Ingin diketahui kategori kualitas udara dibeberapa county yang didefinisikan berdasarkan
-nilai AQI.
+
+'''Case Study 3: Ingin diketahui kategori kualitas udara dibeberapa county yang didefinisikan berdasarkan
+nilai AQI.'''
 
 SELECT 
   county_name, 
@@ -40,9 +44,13 @@ SELECT
 FROM `bigquery-public-data.epa_historical_air_quality.co_daily_summary`
 LIMIT 10;
 
+'''Insight: Query ini memberikan gambaran kualitas udara di 10 county berdasarkan nilai AQI yang 
+  telah diklasifikasikan ke dalam enam kategori standar, sehingga mempermudah interpretasi tingkat 
+  pencemaran udara di masing-masing wilayah.'''
 
-# Case Study 4: Ingin diketahui negara bagian dengan rata-rata AQI dibawah 100, berdasarkan data
-karbon monoksida (CO) dari dataset EPA Historical Air Quality.
+
+'''Case Study 4: Ingin diketahui negara bagian dengan rata-rata AQI dibawah 100, berdasarkan data
+karbon monoksida (CO) dari dataset EPA Historical Air Quality.'''
 
 WITH avg_aqi_state AS (
   SELECT 
@@ -63,8 +71,13 @@ ORDER BY
   avg_aqi DESC
 LIMIT 10;
 
+'''Insight: Query ini menampilkan 10 negara bagian dengan rata-rata AQI di bawah 100 untuk polutan CO, 
+  yang menunjukkan bahwa wilayah-wilayah tersebut memiliki kualitas udara yang relatif lebih baik 
+  karena berada di bawah ambang batas antara kategori “Sedang” dan 
+  “Tidak Sehat untuk kelompok rentan.”'''
 
-# Case Study 5: Ingin diketahui 10 negara bagian dengan nilai AQI tertinggi setelah tahun 2022.
+
+'''Case Study 5: Ingin diketahui 10 negara bagian dengan nilai AQI tertinggi setelah tahun 2022.'''
 
 SELECT 
   cs.state_code, 
@@ -79,9 +92,13 @@ GROUP BY cs.state_code, aqs.state_name, aqs.year
 ORDER BY aqi DESC
 LIMIT 10;
 
+'''Insight: Query ini mengidentifikasi 10 negara bagian dengan nilai AQI tertinggi setelah tahun 2022, 
+  sehingga memberikan gambaran terbaru mengenai wilayah yang menghadapi masalah polusi udara serius dan 
+  memungkinkan pemantauan kualitas udara secara lebih akurat.'''
 
-# Case Study 6: Ingin diketahui 10 negara bagian dengan nilai AQI tertinggi pada tahun 2023, sekaligus
-memberikan kategori kualitas udara berdasarkan nilai AQI tersebut.
+
+'''Case Study 6: Ingin diketahui 10 negara bagian dengan nilai AQI tertinggi pada tahun 2023, sekaligus
+memberikan kategori kualitas udara berdasarkan nilai AQI tersebut.'''
 
 WITH avg_aqi_state AS (
   SELECT 
@@ -110,3 +127,6 @@ WHERE
 GROUP BY 
   cs.state_code, aqs.state_name
 LIMIT 10;
+
+'''Insight: Query ini menunjukkan bahwa setiap negara bagian memiliki tingkat kualitas udara yang
+  berbeda, di mana kategori AQI mencerminkan tingkat risiko kesehatan.'''
