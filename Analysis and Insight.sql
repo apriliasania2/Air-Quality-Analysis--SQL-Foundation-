@@ -8,6 +8,10 @@ FROM `bigquery-public-data.epa_historical_air_quality.co_daily_summary`
 ORDER BY aqi DESC
 LIMIT 10;
 
+''' Insight: Query ini menampilkan 10 county dengan nilai AQI tertinggi untuk karbon monoksida, 
+  menunjukkan wilayah dengan potensi polusi udara paling serius, disertai jumlah observasi dan rata-
+  rata aritmatik untuk menggambarkan representativitas data dan tingkat keparahan polusi.'''
+  
 
 # Case Study 2: Ingin diketahui 10 negara bagian dengan jumlah pengamatan kualitas udara terbanyak di
 tahun 2023.
